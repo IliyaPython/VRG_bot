@@ -21,6 +21,7 @@ import utils
 
 symbols = "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 sym = lambda: rdm.choice(symbols)
+KEYS = os.environ.get("Api keys").split(";")
 
 key = os.environ["BOT TOKEN"]
 conversation_history = {}
@@ -28,7 +29,7 @@ conversation_history = {}
 bot = Bot(token=key, default = DefaultBotProperties(parse_mode = ParseMode.MARKDOWN))  # Мы инициализируем бота с ключом key, и устанавливаем некоторые свойства по умолчанию, здесь 
 dsp = Dispatcher()
 
-api = Text2ImageAPI('https://api-key.fusionbrain.ai/', 'EFD7793C923FEE86E21A935C2EAAA365', 'CBBB9C649E0BB235E86FBC46CF625C1A')
+api = Text2ImageAPI('https://api-key.fusionbrain.ai/', KEYS[0], KEYS[1])
 model_id = api.get_model()
 user_id = ""
 last_message = ""
